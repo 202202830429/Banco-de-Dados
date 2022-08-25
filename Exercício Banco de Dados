@@ -1,0 +1,60 @@
+-- Geração de Modelo físico
+-- Sql ANSI 2003 - brModelo.
+
+
+
+CREATE TABLE CURSO (
+Nome VARCHAR(30),
+Carga Horária VARCHAR(10),
+Modalidade VARCHAR(10),
+Código VARCHAR(10) PRIMARY KEY
+)
+
+CREATE TABLE ALUNO (
+Data de Nascimento DATETIME,
+Sexo VARCHAR(10),
+Matrícula NUMERIC(12) PRIMARY KEY,
+Nome VARCHAR(30),
+CPF NUMERIC(11),
+CH VARCHAR(10)
+)
+
+CREATE TABLE DISCIPLINA (
+Nome VARCHAR(30),
+CH VARCHAR(10),
+Código NUMERIC(10) PRIMARY KEY
+)
+
+CREATE TABLE PROFESSOR (
+Nome VARCHAR(30),
+Sexo VARCHAR(10),
+Matrícula NUMERIC(12) PRIMARY KEY
+)
+
+CREATE TABLE Conta Corrente (
+Cartão VARCHAR(10),
+Senha NUMERIC(6),
+Agência VARCHAR(10),
+Tipo de Conta NUMERIC(4) PRIMARY KEY,
+N° da Cc VARCHAR(10),
+PIX VARCHAR(10)
+)
+
+CREATE TABLE COMPUTADOR (
+Processador VARCHAR(10),
+Periféricos VARCHAR(10),
+Qntd de Memória RAM CHAR(10),
+Sistema Operacional VARCHAR(10),
+Placa Mãe VARCHAR(10),
+Placa de vídeo VARCHAR(10) PRIMARY KEY
+)
+
+CREATE TABLE Caderno (
+Capa VARCHAR(10),
+N° de folhas VARCHAR(10),
+Tipo de encadernação VARCHAR(10),
+N° de matérias VARCHAR(10),
+Código VARCHAR(10) PRIMARY KEY,
+Atributo2 VARCHAR(10)
+)
+
