@@ -1,0 +1,62 @@
+create database db_hospital_viniandrade;
+
+use db_hospital_viniandrade;
+
+create table tb_medico
+	(crm int not null,
+    nome_med varchar(50) not null,
+	primary key(crm));
+  
+  drop table tb_medico;
+  
+create table tb_paciente
+(id_paciente int not null,
+nome_pac varchar(50) not null,
+ano_nasc int not null,
+primary key(id_paciente));
+
+create table tb_consulta
+(crm INT not null,
+id_paciente INT not null,
+dt_consulta date not null,
+primary key(crm, id_paciente),
+foreign key(crm) references tb_medico(crm),
+foreign key(id_paciente) references tb_paciente(id_paciente));
+
+insert into tb_medico values 
+(1010,'josé maria'),
+(1011,'pedro'),
+(1012,'fernando'),
+(1013,'tiago'),
+(1014,'paulo');
+
+insert into tb_paciente values
+(1,'ana', 1991),
+(2,'maria', 1992),
+(3,'joana', 1988),
+(4,'joão', 1989),
+(5,'Pedro', 1990),
+(6,'Marcelo', 1993),
+(7,'Gabriel', 1998);
+
+insert into tb_consulta values (1014, 4, '2023-03-03');
+(1011, 1, 2023-03-03),
+(1013, 2, 2023-03-03),
+(1015, 4, 2023-05-03),
+(1016, 5, 2023-05-03),
+(1017, 6, 2023-05-03);
+
+delete 
+from tb_paciente
+where id_paciente = 1;
+
+
+select *
+from tb_consulta
+
+
+
+
+
+
+
