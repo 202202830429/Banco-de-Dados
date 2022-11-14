@@ -1,0 +1,104 @@
+create database viniciusformula_1;
+use viniciusformula_1;
+
+create table tb_parcitipantes
+(sigla_gp int not null,
+num_piloto int not null,
+posiçao_largada int not null,
+primary key(sigla_gp, num_piloto),
+foreign key(sigla_gp) references tb_corridas(sigla_gp),
+foreign key(num_piloto) references tb_pilotos(numero));
+
+create table tb_pilotos
+(numero int not null,
+nome varchar(50) not null,
+cod_país int not null,
+sigla_equipe int not null,
+primary key(numero),
+foreign key(cod_país) references tb_países(código),
+foreign key(sigla_equipe) references tb_equipes(sigla));
+
+create table tb_corridas
+(sigla_gp int not null,
+nome_gp varchar(50) not null,
+cod_país int not null,
+qtd_voltas int not null,
+primary key(sigla_gp),
+foreign key(cod_país) references tb_países(código));
+
+create table tb_equipes
+(sigla int not null,
+nome varchar(35) not null,
+cod_país int not null,
+primary key(sigla),
+foreign key (cod_país) references tb_países(código));
+
+create table tb_países
+(código int not null,
+nome varchar(50) not null,
+primary key(código));
+
+insert into tb_países values
+(1,'Brasil'),
+(2,'Itália'),
+(3,'França');
+
+insert into tb_equipes values
+(111,'Williams Racing',1),
+(222,'Minardi',1),
+(333,'Benetton',1),
+(444,'McLaren',1),
+(555,'Hass',2),
+(666,'Hispania Racing Team',2),
+(777,'Carteham',2),
+(888,'Marussia',2);
+
+insert into tb_pilotos values
+(11,'Rubens Barrichello',1,111),
+(12,'Felipe Massa',1, 111),
+(13,'Tarso Marques',1,222), 
+(14,'Nelson Piquet',1,333), 
+(15,'Emerson Fittipaldi',1,444),
+(21,'Antonio Giovinazzi',2, 555),
+(23,'Vitantonio Liuzzi',2, 666),
+(33,'Gianmaroia Bruni',2,222),
+(31,'Charles Pic',3,777),
+(32,'Jules Bianchi',3,888);
+
+insert into tb_corridas values
+(01,'GP do Brasil',1,71),
+(02,'GP da Itália',2,53),
+(03,'GP da França',3,53);
+
+select nome from tb_países where nome like'B%' and nome like '%l';
+
+select nome from tb_pilotos;
+
+select nome_gp,qtd_voltas from tb_corridas;
+
+ALTER TABLE tb_pilotos
+    CHANGE nome piloto_nome VARCHAR(50) NOT NULL;
+    
+select piloto_nome, nome from tb_pilotos join tb_países on cod_país = código order by piloto_nome, nome asc;
+
+alter table tb_pilotos add salário int not null;    
+
+update tb_pilotos set numero=22 where tb_pilotos.numero=23;
+update tb_pilotos set numero=23 where tb_pilotos.numero=33;
+
+update tb_pilotos set salário=450000 where tb_pilotos.numero=11;
+update tb_pilotos set salário=125000 where tb_pilotos.numero=12;
+update tb_pilotos set salário=95000 where tb_pilotos.numero=13;
+update tb_pilotos set salário=130000 where tb_pilotos.numero=14;
+update tb_pilotos set salário=95000 where tb_pilotos.numero=15;
+update tb_pilotos set salário=300000 where tb_pilotos.numero=21;
+update tb_pilotos set salário=200000 where tb_pilotos.numero=22;
+update tb_pilotos set salário=340000 where tb_pilotos.numero=23;
+update tb_pilotos set salário=99000 where tb_pilotos.numero=31;
+update tb_pilotos set salário=100000 where tb_pilotos.numero=32;
+
+select piloto_nome, salário from tb_pilotos where salário between 70000 and 100000;
+
+select avg(salário), cod_país from tb_pilotos join tb_países on tb_países.código = tb_pilotos.cod_país group by tb_pilotos.cod_país;
+
+select piloto_nome, salário from tb_pilotos where salário order by  salário asc;
