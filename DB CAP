@@ -1,0 +1,44 @@
+Create database CAP;
+
+create table flyup
+(cod_flyup int not null,
+nome_flyup varchar (100) not null,
+numero_flyup int (11) not null,
+nascimento_flyup date not null,
+primary key(cod_flyup));
+
+create table amadas
+(cod_amadas int not null,
+nome_amadas varchar (100),
+numero_amadas int(11),
+nascimento_amadas date,
+primary key(cod_amadas));
+
+
+create table teleios
+(cod_teleios int not null,
+nome_teleios varchar (100) not null,
+numero_teleios int(11) not null,
+nascimento_teleios date not null,
+primary key(cod_teleios));
+
+create table kids
+(cod_kids int not null,
+nome_kids varchar (100),
+numeropais_kids int(11),
+nascimento_kids date not null,
+primary key(cod_kids));
+
+create table geral
+(cod_geral int not null,
+nome_geral varchar (100),
+numero_geral int (11),
+nascimento_geral date not null,
+foreign key (cod_geral) references kids(cod_kids) and teleios(cod_teleios)
+
+
+insert into flyup values
+(03001,'Vinicius de Sousa Andrade',61985254499, 22/01/2003);
+
+
+
